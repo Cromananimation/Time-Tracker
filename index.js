@@ -75,13 +75,12 @@ const employees = [
 ]
 
 const getRoleTitles = () => { return roles.map((v) => v.title) }
-const getEmployeeNames = () => { return roles.map((v) => `${v.first_name} ${v.last_name}`) }
+const getEmployeeNames = () => { return employees.map((v) => `${v.first_name} ${v.last_name}`) }
 
-const inquire = require("inquirer")
+const inquire = require("inquirer");
 
-var RUNNING = true
 
-const menu = () => {
+async function menu() {
   inquire.prompt(
     {
       type: 'list',
@@ -89,45 +88,44 @@ const menu = () => {
       name: 'menu',
       choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
     }
-  ).then((data) => {
+  ).then(async (data) => {
     var continue_ = true
     console.log(data.menu)
     if (data.menu == 'View All Employees') {
       viewAllEmployees()
     }
     else if (data.menu == 'Add Employee') {
-      addEmployee()
+      await addEmployee()
     }
     else if (data.menu == 'Update Employee Role') {
-      updateEmployeeRole()
+      await updateEmployeeRole()
     }
     else if (data.menu == 'View All Roles') {
-  
+
     }
     else if (data.menu == "Add Role") {
-  
+
     }
     else if (data.menu == 'View All Departments') {
-  
+
     }
     else if (data.menu == "Add Department") {
-      addDepartment()
+      await addDepartment()
     }
     else if (data.menu == "Quit") {
       continue_ = false
     }
     if (continue_) menu()
-  });
-}
-
+  })
+};
 
 const viewAllEmployees = () => {
   const employee_names = employees.map((v, i) => `${v.first_name} ${v.last_name}`)
   console.log(employee_names)
 }
 
-const updateEmployeeRole = () => {
-  inquire.prompt(
+const updateEmployeeRole = async () => {
+  await inquire.prompt(
     [
       {
         type: 'list',
@@ -155,35 +153,28 @@ const updateEmployeeRole = () => {
   })
 }
 
-const addEmployee = () => {
-  inquire.prompt(
-    [{
-      type: 'input',
-      message: 'what is employees first name',
-      name: 'first_name',
-    },
-    {
-      type: 'input',
-      message: 'What is there last name?',
-      name: 'last_name',
-    },
-  ]
+const addEmployee = async () => {
+  await inquire.prompt(
+    [
+      {
+        type: 'input',
+        message: 'what is employees first name',
+        name: 'first_name',
+      },
+      {
+        type: 'input',
+        message: 'What is there last name?',
+        name: 'last_name',
+      }
+    ]
     ).then((data) => {
-      console.log(data.menu)
-      if (data.menu == 'View Employee') {
-        viewEmployees()
-      }
-      else if (data.menu == 'Add Employee') {
-        addEmployee()
-      }
-      else if (data.menu == 'Add Role') {
-        updateEmployeeRole()
-      }
+      console.log(data)
+      
     });
 };
 
-const addDepartment = () => {
-  inquire.prompt(
+const addDepartment = async () => {
+  await inquire.prompt(
     [
       {
         type: 'input',
@@ -201,5 +192,4 @@ const addDepartment = () => {
   })
 };
 
-
- menu()
+menu()
