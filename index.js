@@ -11,22 +11,55 @@ const departments = [
   {
     id: 0,
     name: "HR"
+  },
+  {
+    id: 1,
+    name: "Art"
+  },
+  {
+    id: 2,
+    name: "Production"
   }
+
 ]
 
 const roles = [
   {
     id: 0,
-    salary: 1000,
+    salary: 100000,
     title: "HR Manager",
     department_id: 0
   },
   {
-    id: 0,
-    salary: 1000,
+    id: 1,
+    salary: 30000,
     title: "HR Employee",
     department_id: 0
-  }
+  },
+  {
+    id: 2,
+    salary: 200000,
+    title: "Art Director",
+    department_id: 1
+  },
+  {
+    id: 3,
+    salary: 30000,
+    title: "Art Employee",
+    department_id: 1
+  },
+  {
+    id: 4,
+    salary: 400000,
+    title: "Production Manager",
+    department_id: 2
+  },
+  {
+    id: 5,
+    salary: 50000,
+    title: "Production Employee",
+    department_id: 2
+  },
 ]
 
 const employees = [
@@ -46,7 +79,7 @@ const employees = [
   },
   { 
     id: 2,
-    first_name: "Test", 
+    first_name: "Afro", 
     last_name: "Samari",
     role_id: 2,
     manager_id: 2 
@@ -74,6 +107,7 @@ const employees = [
   }
 ]
 
+const getDepartmentTitles = () => { return departments.map((v) => v.name) }
 const getRoleTitles = () => { return roles.map((v) => v.title) }
 const getEmployeeNames = () => { return employees.map((v) => `${v.first_name} ${v.last_name}`) }
 
@@ -84,7 +118,7 @@ async function menu() {
   inquire.prompt(
     {
       type: 'list',
-      message: 'What would you like to do? ( Use arrow keys)',
+      message: 'What would you like to do?',
       name: 'menu',
       choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department', 'Quit'],
     }
@@ -101,13 +135,13 @@ async function menu() {
       await updateEmployeeRole()
     }
     else if (data.menu == 'View All Roles') {
-
+      console.log(getRoleTitles())
     }
     else if (data.menu == "Add Role") {
-
+      await addRole()
     }
     else if (data.menu == 'View All Departments') {
-
+      console.log(getDepartmentTitles())
     }
     else if (data.menu == "Add Department") {
       await addDepartment()
@@ -123,7 +157,9 @@ const viewAllEmployees = () => {
   const employee_names = employees.map((v, i) => `${v.first_name} ${v.last_name}`)
   console.log(employee_names)
 }
-
+const addRole = async () => {
+  await inquire.prompt()
+}
 const updateEmployeeRole = async () => {
   await inquire.prompt(
     [
@@ -189,6 +225,7 @@ const addDepartment = async () => {
       }
     ]
   ).then((data) => {
+
   })
 };
 

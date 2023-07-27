@@ -8,7 +8,7 @@ INSERT INTO department_db (name) VALUES ("HR"),
 INSERT INTO role_db (title, salary, department_id)
 VALUES ("HR Manager", 20000, 0), -- 0
        ("HR Employee", 10000, 0), -- 1
-       ("Art Manager", 100000, 1), -- 2
+       ("Art Director", 100000, 1), -- 2
        ("Art Employee", 100000, 1) -- 3
        ("Production Manager", 100000, 1), -- 4
        ("Production Employee", 100000, 1) -- 5
