@@ -180,16 +180,10 @@ const updateEmployeeRole = async () => {
     console.log(employees)
     data.id = employees.length
     console.log(data)
-    // employees.push(
-    //   {
-    //     id: employees.length(),
-
-    //   }
-    // )
-  })
+  }),
 }
 
-const addEmployee = async () => {
+async function addEmployee() {
   await inquire.prompt(
     [
       {
@@ -203,11 +197,11 @@ const addEmployee = async () => {
         name: 'last_name',
       }
     ]
-    ).then((data) => {
-      console.log(data)
-      
-    });
-};
+  ).then((data) => {
+    console.log(data)
+
+  })
+}
 
 const addDepartment = async () => {
   await inquire.prompt(

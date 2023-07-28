@@ -1,7 +1,5 @@
 DROP DATABASE IF EXISTS timeTracker_db;
-DROP TABLE IF EXISTS employees_db;
-DROP TABLE IF EXISTS role_db;
-DROP TABLE IF EXISTS department_db;
+
 CREATE DATABASE timeTracker_db;
 
 USE timeTracker_db;
