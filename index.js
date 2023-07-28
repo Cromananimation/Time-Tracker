@@ -180,7 +180,7 @@ const updateEmployeeRole = async () => {
     console.log(employees)
     data.id = employees.length
     console.log(data)
-  }),
+  })
 }
 
 async function addEmployee() {
